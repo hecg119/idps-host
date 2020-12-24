@@ -2794,6 +2794,12 @@ sudo chmod +x /usr/bin/nsm_rules_reload
 
 sudo chmod +x /usr/bin/nsm_cleanlogs
 
+sudo mv *.rules /var/lib/suricata/rules
+sudo mv malware* /var/lib/suricata/rules
+sudo mv *.lua /var/lib/suricata/rules
+sudo mv *.url /var/lib/suricata/rules
+sudo mv *.blacklist /var/lib/suricata/rules/iprep/
+
 #################
 # install irc-bot
 #################
@@ -2805,10 +2811,8 @@ sudo /root/irc-bot_install
 #############
 # create logs
 #############
-sudo touch /var/log/suricata/bad_urls.log
 sudo touch /var/log/suricata/ransomware_urls.log
-sudo touch /var/log/suricata/cryptxxx_urls.log
-sudo touch /var/log/suricata/xss.log
+sudo touch /var/log/suricata/malicious_urls.log
 
 #########################
 # enable systemd services

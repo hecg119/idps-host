@@ -2120,6 +2120,9 @@ rule-files:
   - idps.rules
   - scanners.rules
   - local.rules
+  - ja3_fingerprints.rules
+  - sslipblacklist.rules
+  - sslblacklist_tls_cert.rules
 
 ##
 ## Auxiliary configuration files.
@@ -2861,6 +2864,9 @@ sudo rm -R /root/rules
 sudo rm -R /root/lua
 sudo rm -R /root/idps-host
 sudo rm /root/*.config
+
+sudo chmod -x /var/log/suricata/*.log
+sudo chmod -x /var/log/suricata/*.json
 
 # set /tmp to RAM disk
 sudo cp -v /usr/share/systemd/tmp.mount /etc/systemd/system/

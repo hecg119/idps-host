@@ -598,7 +598,7 @@ logging:
 
 # Linux high speed capture support
 af-packet:
-  - interface: $INF_INCOMING
+  - interface: eth0
     # Number of receive threads. "auto" uses the number of cores
     #threads: auto
     # Default clusterid. AF_PACKET will load balance packets based on flow.
@@ -671,20 +671,20 @@ af-packet:
     #  For eBPF and XDP setup including bypass, filter and load balancing, please
     #  see doc/userguide/capture-hardware/ebpf-xdp.rst for more info.
     copy-mode: ips
-    copy-iface: $INF_OUTGOING
+    copy-iface: eth1
     #buffer-size: 1497366528
-    buffer-size: 32768
+    buffer-size: 131072
 
-  - interface: $INF_OUTGOING
+  - interface: eth1
     #threads: auto
     cluster-id: 98
     cluster-type: cluster_flow
     #defrag: no
     defrag: yes
     copy-mode: ips
-    copy-iface: $INF_INCOMING
+    copy-iface: eth0
     #buffer-size: 1497366528
-    buffer-size: 32768
+    buffer-size: 131072
     use-mmap: yes
     #mmap-locked: yes
 
@@ -1346,29 +1346,22 @@ flow-timeouts:
 #
 stream:
   memcap: 64mb
-  #memcap: 1024mb
   checksum-validation: yes      # reject wrong csums
   inline: auto                  # auto will use inline mode in IPS mode, yes or no set it statically
   max-synack-queued: 1000
-  #max-synack-queued: 10000
   prealloc-sessions: 2048
-  #prealloc-sessions: 4096
   async-oneside: false
   #bypass: no
   bypass: yes
   reassembly:
     memcap: 256mb
-    #memcap: 4096mb
     depth: 1mb                  # reassemble 1mb into a stream
     toserver-chunk-size: 2560
     toclient-chunk-size: 2560
     randomize-chunk-size: yes
     randomize-chunk-range: 10
     #raw: yes
-    #raw: yes
     segment-prealloc: 2048
-    #segment-prealloc: 4096
-    #check-overlap-different-data: true
     #check-overlap-different-data: true
 
 

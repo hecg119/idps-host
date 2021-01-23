@@ -672,8 +672,7 @@ af-packet:
     #  see doc/userguide/capture-hardware/ebpf-xdp.rst for more info.
     copy-mode: ips
     copy-iface: eth1
-    #buffer-size: 1497366528
-    buffer-size: 131072
+    buffer-size: 1497366528
 
   - interface: eth1
     #threads: auto
@@ -683,8 +682,7 @@ af-packet:
     defrag: yes
     copy-mode: ips
     copy-iface: eth0
-    #buffer-size: 1497366528
-    buffer-size: 131072
+    buffer-size: 1497366528
     use-mmap: yes
     #mmap-locked: yes
 

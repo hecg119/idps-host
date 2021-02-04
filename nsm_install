@@ -1013,6 +1013,7 @@ app-layer:
       # For best performance, select 'bypass'.
       #
       #encryption-handling: default
+      encryption-handling: bypass
 
     dcerpc:
       enabled: yes
@@ -2306,6 +2307,17 @@ sudo cat >>/etc/logrotate.d/suricata <<END
 }
 
 /var/log/suricata/ransomware_urls_alert.log {
+  daily
+  rotate 30
+  olddir /var/log/suricata/StatsByDate/
+  compress
+  missingok
+  notifempty
+  dateext
+  copytruncate
+}
+
+/var/log/suricata/phishing_urls.log {
   daily
   rotate 30
   olddir /var/log/suricata/StatsByDate/

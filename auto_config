@@ -1343,7 +1343,8 @@ stream:
   prealloc-sessions: 2048
   async-oneside: false
   drop-invalid: yes
-  bypass: no
+  #bypass: no
+  bypass: yes
   reassembly:
     memcap: 256mb
     depth: 1mb                  # reassemble 1mb into a stream

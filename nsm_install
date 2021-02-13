@@ -1107,10 +1107,10 @@ app-layer:
 
            # Can be specified in kb, mb, gb.  Just a number indicates
            # it's in bytes.
-           #request-body-limit: 100kb
-           request-body-limit: 0
-           #response-body-limit: 100kb
-           response-body-limit: 0
+           request-body-limit: 100kb
+           #request-body-limit: 0
+           response-body-limit: 100kb
+           #response-body-limit: 0
 
            # inspection limits
            request-body-minimal-inspect-size: 32kb
@@ -1405,12 +1405,10 @@ host-os-policy:
 # Defrag settings:
 
 defrag:
-  #memcap: 32mb
-  memcap: 64mb
+  memcap: 32mb
   hash-size: 65536
   trackers: 65535 # number of defragmented flows to follow
-  #max-frags: 65535 # number of fragments to keep (higher than trackers)
-  max-frags: 131070 # number of fragments to keep (higher than trackers)
+  max-frags: 65535 # number of fragments to keep (higher than trackers)
   prealloc: yes
   timeout: 60
 
@@ -1576,32 +1574,26 @@ flow-timeouts:
 #                               # is used in a rule.
 #
 stream:
-  #memcap: 64mb
-  memcap: 512mb
+  memcap: 64mb
   checksum-validation: yes      # reject wrong csums
   inline: auto                  # auto will use inline mode in IPS mode, yes or no set it statically
-  #max-synack-queued: 1000
-  max-synack-queued: 5000
-  #prealloc-sessions: 2048
-  prealloc-sessions: 4096
+  max-synack-queued: 1000
+  prealloc-sessions: 2048
   #async-oneside: false
   async-oneside: true
   drop-invalid: yes
   #bypass: no
   bypass: yes
   reassembly:
-    #memcap: 256mb
-    memcap: 2048mb
-    #depth: 1mb                  # reassemble 1mb into a stream
-    depth: 4mb                  # reassemble 1mb into a stream
+    memcap: 256mb
+    depth: 1mb                  # reassemble 1mb into a stream
     toserver-chunk-size: 2560
     toclient-chunk-size: 2560
     randomize-chunk-size: yes
     randomize-chunk-range: 10
     #raw: yes
     raw: yes
-    #segment-prealloc: 2048
-    segment-prealloc: 4096
+    segment-prealloc: 2048
     #check-overlap-different-data: true
 
 
@@ -1671,8 +1663,7 @@ detect:
     toclient-groups: 3
     toserver-groups: 25
   sgh-mpm-context: auto
-  #inspection-recursion-limit: 3000
-  inspection-recursion-limit: 9000
+  inspection-recursion-limit: 3000
   # If set to yes, the loading of signatures will be made after the capture
   # is started. This will limit the downtime in IPS mode.
   delayed-detect: yes

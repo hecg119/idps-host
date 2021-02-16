@@ -88,8 +88,10 @@ sudo cat >> /usr/bin/nsm_blacklist_md5 <<END
 # Version     : 0.2
 # License     : GPLv3 (Open Source)
 
-#cd /var/lib/clamav
 cd /tmp
+
+# update clamav definations
+sudo freshclam
 
 if [[ -s /var/lib/clamav/main.cvd && -s /var/lib/clamav/daily.cvd ]]
 then

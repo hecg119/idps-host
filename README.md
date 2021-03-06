@@ -198,8 +198,6 @@ __Host based__
 http://127.0.0.1:19999
 ```
 
-e.g. http://192.168.20.180:19999
-
 __Since netdata is now on the cloud and the performance of it is dropped a lot for some countries.  If you encounter the performance problem, you may consider to disable it.__  
 
 ```

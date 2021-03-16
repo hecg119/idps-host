@@ -147,7 +147,7 @@ if [ -s /tmp/ja3_fingerprints.rules ]
 then
   sudo sed -i 's/alert/reject/' /tmp/ja3_fingerprints.rules
   # disable Tencent SSL cert
-  sudo sed -i 's/.*906200038/#&/' /tmp/ja3_fingerprints.rules
+  sudo sed -i 's/.*906200038/#&/' /tmp/ja3_fingerprints.rules  
   sudo cp /tmp/ja3_fingerprints.rules /var/lib/suricata/rules/
 fi
 
@@ -205,7 +205,8 @@ cd ~
 
 # loading rules
 sudo suricata-update
-sudo kill -USR2 $(pidof suricata)
+#sudo kill -USR2 $(pidof suricata)
+sudo suricatasc -c ruleset-reload-nonblocking
 
 # workaround to fix minor bug of suricata for memory leaking on every reload (-USR2)
 sudo sync; sudo sh -c 'echo 3 > /proc/sys/vm/drop_caches'

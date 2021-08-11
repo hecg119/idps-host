@@ -13,12 +13,12 @@ sudo cp stamus-luajit-scripts/*.lua /var/lib/suricata/rules/
 #
 # zeustracker.abuse.ch
 #
-cd /tmp
-wget https://zeustracker.abuse.ch/blocklist.php?download=badips -O /tmp/zeustracker.txt
-if [ -s /tmp/zeustracker.txt ]
-then
-	grep -v "#" /tmp/zeustracker.txt | grep -v " " /tmp/zeustracker.txt | grep -v "" /tmp/zeustracker.txt | sort -u | sed -e 's/$/,1,10/' > /var/lib/suricata/rules/iprep/zeustracker.blacklist
-fi
+#cd /tmp
+#wget https://zeustracker.abuse.ch/blocklist.php?download=badips -O /tmp/zeustracker.txt
+#if [ -s /tmp/zeustracker.txt ]
+#then
+#	grep -v "#" /tmp/zeustracker.txt | grep -v " " /tmp/zeustracker.txt | grep -v "" /tmp/zeustracker.txt | sort -u | sed -e 's/$/,1,10/' > /var/lib/suricata/rules/iprep/zeustracker.blacklist
+#fi
 
 #
 # blocklist.de
@@ -33,12 +33,12 @@ fi
 #
 # IPBLC Server IP Blacklist
 #
-cd /tmp
-wget http://www.ip-finder.me/ip-full-list/ -O /tmp/ip-finder.me.html
-if [ -s /tmp/ip-finder.me.html ]
-then
-	grep -P -o '(?<=/)[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}(?=/)' /tmp/ip-finder.me.html | sort -u | sed -e 's/$/,1,10/' > /var/lib/suricata/rules/iprep/ip-finder.blacklist
-fi
+#cd /tmp
+#wget http://www.ip-finder.me/ip-full-list/ -O /tmp/ip-finder.me.html
+#if [ -s /tmp/ip-finder.me.html ]
+#then
+#	grep -P -o '(?<=/)[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}(?=/)' /tmp/ip-finder.me.html | sort -u | sed -e 's/$/,1,10/' > /var/lib/suricata/rules/iprep/ip-finder.blacklist
+#fi
 
 #
 # TOR Exit Nodes

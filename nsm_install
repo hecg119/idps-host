@@ -1359,9 +1359,9 @@ reputation-categories-file: /etc/suricata/iprep_categories
 default-reputation-path: /var/lib/suricata/rules/iprep
 reputation-files:
 # - reputation.list
- - zeustracker.blacklist
+# - zeustracker.blacklist
  - blocklist.de.blacklist
- - ip-finder.blacklist
+# - ip-finder.blacklist
  - tor.torexitnode
  - reputation.blacklist
 

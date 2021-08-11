@@ -68,10 +68,12 @@ sudo apt -y autoremove
 # essential packages
 ####################
 #sudo apt -y install net-tools glances git python3-pip ethtool clamav ifupdown fail2ban
-sudo apt -y install net-tools glances git python3-pip ethtool clamav fail2ban
+#sudo apt -y install net-tools glances git python3-pip ethtool clamav fail2ban
+sudo apt -y install net-tools glances git python3-pip ethtool fail2ban
 #sudo apt -y install linux-tools-common linux-tools-generic cpufrequtils thermald fping
 sudo apt -y install linux-tools-common linux-tools-generic fping netdata wpasupplicant
 
+<<comment-out
 ###############################
 # setup blacklist_md5 of clamav
 ###############################
@@ -216,6 +218,7 @@ END
 
 # make it executable
 sudo chmod +x /usr/bin/nsm_blacklist_md5
+comment-out
 
 ###############################################
 # installation of suricata and its dependencies
@@ -2230,14 +2233,14 @@ sudo cat >>/etc/logrotate.d/suricata <<END
   missingok
   notifempty
   dateext
-	copytruncate
+  copytruncate
 }
 
 /var/log/suricata/stats.log {
   daily
   rotate 30
   olddir /var/log/suricata/StatsByDate/
-	compress
+  compress
   missingok
   notifempty
   dateext
@@ -2756,15 +2759,13 @@ END
 #######################################
 sudo crontab -r
 sudo crontab -l > /tmp/mycron
-echo "#50 01,09,17 * * * /usr/bin/nsm_blacklist_md5" | sudo tee -a /tmp/mycron
-echo "50 00 * * * /usr/bin/nsm_blacklist_md5" | sudo tee -a /tmp/mycron
-echo "#30 */8 * * * /usr/bin/nsm_rules_update" | sudo tee -a /tmp/mycron
-echo "30 01 * * * /usr/bin/nsm_rules_update" | sudo tee -a /tmp/mycron
-echo "30 06 * * * /etc/croissants/conf.d/auto_update" | sudo tee -a /tmp/mycron
-echo "00 11,23 * * * /usr/bin/nsm_cleanlogs" | sudo tee -a /tmp/mycron
-echo "*/30 * * * * /etc/croissants/conf.d/auto_ip_config" | sudo tee -a /tmp/mycron
-echo "#00 00,12 * * * /usr/bin/update_ubuntu" | sudo tee -a /tmp/mycron
+echo "00 03 * * * /usr/bin/nsm_cleanlogs" | sudo tee -a /tmp/mycron
+#echo "00 04 * * * /usr/bin/nsm_blacklist_md5" | sudo tee -a /tmp/mycron
+echo "00 04 * * * /etc/croissants/conf.d/auto_update" | sudo tee -a /tmp/mycron
+echo "00 05 * * * /usr/bin/nsm_rules_update" | sudo tee -a /tmp/mycron
+echo "00 06 * * * /usr/bin/auto_update_ubuntu" | sudo tee -a /tmp/mycron
 echo "*/15 * * * * /usr/bin/check_drop" | sudo tee -a /tmp/mycron
+echo "*/30 * * * * /etc/croissants/conf.d/auto_ip_config" | sudo tee -a /tmp/mycron
 sudo crontab /tmp/mycron
 
 ####################
@@ -2871,8 +2872,8 @@ sudo set_timezone
 sudo nsm_rules_update
 
 # disable irqbalance
-sudo systemctl disable irqbalance
-sudo systemctl stop irqbalance
+#sudo systemctl disable irqbalance
+#sudo systemctl stop irqbalance
 
 # clean up
 sudo rm /root/nsm_install

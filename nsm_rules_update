@@ -74,6 +74,18 @@ then
 fi
 
 #
+# malicious.rules
+#
+cd /tmp
+wget https://github.com/samiux/update-croissants/raw/master/rules/malicious.rules -O /tmp/malicious.rules
+if [ -s /tmp/malicious.rules ]
+then
+        sudo cp /tmp/malicious.rules /var/lib/suricata/rules/
+
+fi
+
+
+#
 # malware_md5
 #
 cd /tmp

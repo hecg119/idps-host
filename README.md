@@ -302,9 +302,15 @@ ls /sys/class/net
 The following is the recommended connection method of Croissants.  However, you can connect it behind router too.
 
 __Network Based__
-
 ```bash
-Internet --- Modem (if any) --- Croissants --- Router --- Switch (if any) --- PCs
+Internet --- Modem (if any) --- Croissants --- Wifi Router --- Switch --- PCs
+                                    |                             |
+                                    +-----------------------------+
+```
+```bash
+5G Modem --- Croissants --- Wifi Router --- Switch --- PCs
+                 |                             |
+                 +-----------------------------+
 ```
 
 __Host Based__

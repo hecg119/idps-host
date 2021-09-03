@@ -177,6 +177,8 @@ then
 	if [ -s clamav_md5 ]
 	then
 		# copy to suricata rules directory
+		sort clamav_md5 | uniq > a
+		cp a clamav_md5
 		cp clamav_md5 /var/lib/suricata/rules/
 	fi
 fi
@@ -203,6 +205,7 @@ rm /tmp/daily.*
 rm /tmp/*_md5
 rm /tmp/*.tgz
 rm -R /tmp/sigs
+rm /tmp/a
 #rm /tmp/COPYING
 
 END

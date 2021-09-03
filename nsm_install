@@ -93,13 +93,13 @@ cd /tmp
 # update clamav definations
 sudo freshclam
 
-if [[ -s /var/lib/clamav/main.cvd && -s /var/lib/clamav/daily.cvd ]]
+if [[ -s /var/lib/clamav/main.cvd || -s /var/lib/clamav/daily.cvd ]]
 then
         sudo cp /var/lib/clamav/main.cvd /tmp/
         sudo cp /var/lib/clamav/daily.cvd /tmp/
 fi
 
-if [[ -s /tmp/main.cvd && -s /tmp/daily.cvd ]]
+if [[ -s /tmp/main.cvd || -s /tmp/daily.cvd ]]
 then
 	# extract the databases
 	if [ -s main.cvd ]

@@ -68,15 +68,13 @@ sudo apt -y autoremove
 # essential packages
 ####################
 #sudo apt -y install net-tools glances git python3-pip ethtool clamav ifupdown fail2ban
-#sudo apt -y install net-tools glances git python3-pip ethtool clamav fail2ban
-sudo apt -y install net-tools glances git python3-pip ethtool fail2ban
+sudo apt -y install net-tools glances git python3-pip ethtool clamav fail2ban
 #sudo apt -y install linux-tools-common linux-tools-generic cpufrequtils thermald fping
 sudo apt -y install linux-tools-common linux-tools-generic fping netdata wpasupplicant
 
-<<comment-out
-###############################
-# setup blacklist_md5 of clamav
-###############################
+################################
+# setup blacklist_md5 for clamav
+################################
 if [ -f /usr/bin/nsm_blacklist_md5 ]
 then
 	sudo rm /usr/bin/nsm_blacklist_md5
@@ -99,15 +97,8 @@ if [[ -s /var/lib/clamav/main.cvd && -s /var/lib/clamav/daily.cvd ]]
 then
         sudo cp /var/lib/clamav/main.cvd /tmp/
         sudo cp /var/lib/clamav/daily.cvd /tmp/
-else
-        # download clamav database files
-        wget http://database.clamav.net/main.cvd -O /tmp/main.cvd
-        wget http://database.clamav.net/daily.cvd -O /tmp/daily.cvd
-	sudo cp /tmp/main.cvd /var/lib/clamav/
-	sudo cp /tmp/daily.cvd /var/lib/clamav/
 fi
 
-#if [[ -s /var/lib/clamav/main.cvd && -s /var/lib/clamav/daily.cvd ]]
 if [[ -s /tmp/main.cvd && -s /tmp/daily.cvd ]]
 then
 	# extract the databases
@@ -190,7 +181,7 @@ then
 	fi
 fi
 
-# Linux Malware Detect MD5
+# setup Linux Malware Detect MD5
 cd /tmp
 wget http://cdn.rfxn.com/downloads/maldet-sigpack.tgz -O /tmp/maldet-sigpack.tgz
 
@@ -212,13 +203,12 @@ rm /tmp/daily.*
 rm /tmp/*_md5
 rm /tmp/*.tgz
 rm -R /tmp/sigs
-rm /tmp/COPYING
+#rm /tmp/COPYING
 
 END
 
 # make it executable
 sudo chmod +x /usr/bin/nsm_blacklist_md5
-comment-out
 
 ###############################################
 # installation of suricata and its dependencies

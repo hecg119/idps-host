@@ -196,6 +196,8 @@ then
 	grep -P -o "[a-z0-9]{32}" /tmp/sigs/md5v2.dat >> /tmp/lmd_md5
 	grep -P -o "[a-z0-9]{32}" /tmp/sigs/rfxn.hdb >> /tmp/lmd_md5
 	# copy to suricata rules directory
+	sort lmd_md5 | uniq > b
+	cp b lmd_md5
 	sudo cp /tmp/lmd_md5 /var/lib/suricata/rules/
 fi
 
@@ -206,7 +208,8 @@ rm /tmp/*_md5
 rm /tmp/*.tgz
 rm -R /tmp/sigs
 rm /tmp/a
-#rm /tmp/COPYING
+rm /tmp/b
+rm /tmp/COPYING
 
 END
 

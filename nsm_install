@@ -2824,10 +2824,10 @@ sudo mv *.blacklist /var/lib/suricata/rules/iprep/
 #################
 # install irc-bot
 #################
-sudo chmod +x /root/irc-bot_install
-sudo chmod +x /root/irc-bot.py
-sudo mv /root/irc-bot.py /etc/croissants/conf.d/
-sudo /root/irc-bot_install
+#sudo chmod +x /root/irc-bot_install
+#sudo chmod +x /root/irc-bot.py
+#sudo mv /root/irc-bot.py /etc/croissants/conf.d/
+#sudo /root/irc-bot_install
 
 #############
 # create logs
@@ -2875,7 +2875,7 @@ sudo nsm_rules_update
 # clean up
 sudo rm /root/nsm_install
 sudo rm /root/ids_to_ips
-sudo rm /root/irc-bot_install
+#sudo rm /root/irc-bot_install
 sudo rm /root/*.tar.gz
 sudo rm -R /root/rules
 sudo rm -R /root/lua

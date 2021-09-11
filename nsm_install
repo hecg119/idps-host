@@ -2698,8 +2698,8 @@ sudo /root/ids_to_ips
 #######################################
 # update the clamav and malicious rules
 #######################################
-sudo systemctl stop clamav-freshclam
-sudo systemctl disable clamav-freshclam
+#sudo systemctl stop clamav-freshclam
+#sudo systemctl disable clamav-freshclam
 sudo nsm_blacklist_md5
 
 ####################################

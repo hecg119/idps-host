@@ -2196,6 +2196,7 @@ sudo /usr/bin/find /var/log/ -name "*.gz" -mtime 3 -exec rm {} \;
 sudo rm /core.*
 sudo rm /core
 sudo rm /var/crash/*
+sudo rm /var/lib/clamav/*.cld
 END
 
 #####################

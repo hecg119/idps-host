@@ -72,6 +72,8 @@ sudo apt -y install net-tools glances git python3-pip ethtool clamav fail2ban
 #sudo apt -y install linux-tools-common linux-tools-generic cpufrequtils thermald fping
 sudo apt -y install linux-tools-common linux-tools-generic fping netdata wpasupplicant
 
+sudo python3 -m pip install cvdupdate
+
 ################################
 # setup blacklist_md5 for clamav
 ################################
@@ -84,19 +86,19 @@ sudo touch /usr/bin/nsm_blacklist_md5
 sudo cat >> /usr/bin/nsm_blacklist_md5 <<END
 #!/bin/bash
 # Author      : Samiux (https://samiux.github.io)
-# Date        : SEP 22, 2017
+# Date        : SEP 27, 2021
 # Version     : 0.2
 # License     : GPLv3 (Open Source)
 
 cd /tmp
 
 # update clamav definations
-#sudo freshclam
+sudo cvd update
 
-if [[ -s /var/lib/clamav/main.cvd || -s /var/lib/clamav/daily.cvd ]]
+if [[ -s /root/.cvdupdate/database/main.cvd || -s /root/.cvdupdate/database/daily.cvd ]]
 then
-        sudo cp /var/lib/clamav/main.cvd /tmp/
-        sudo cp /var/lib/clamav/daily.cvd /tmp/
+        sudo cp /root/.cvdupdate/database/main.cvd /tmp/
+        sudo cp /root/.cvdupdate/database/daily.cvd /tmp/
 fi
 
 if [[ -s /tmp/main.cvd || -s /tmp/daily.cvd ]]
@@ -196,8 +198,8 @@ then
 	grep -P -o "[a-z0-9]{32}" /tmp/sigs/md5v2.dat >> /tmp/lmd_md5
 	grep -P -o "[a-z0-9]{32}" /tmp/sigs/rfxn.hdb >> /tmp/lmd_md5
 	# copy to suricata rules directory
-	sort lmd_md5 | uniq > b
-	cp b lmd_md5
+	sort /tmp/lmd_md5 | uniq > /tmp/b
+	cp /tmp/b /tmp/lmd_md5
 	sudo cp /tmp/lmd_md5 /var/lib/suricata/rules/
 fi
 
@@ -2196,7 +2198,6 @@ sudo /usr/bin/find /var/log/ -name "*.gz" -mtime 3 -exec rm {} \;
 sudo rm /core.*
 sudo rm /core
 sudo rm /var/crash/*
-sudo rm /var/lib/clamav/*.cld
 END
 
 #####################
@@ -2699,8 +2700,8 @@ sudo /root/ids_to_ips
 #######################################
 # update the clamav and malicious rules
 #######################################
-#sudo systemctl stop clamav-freshclam
-#sudo systemctl disable clamav-freshclam
+sudo systemctl stop clamav-freshclam
+sudo systemctl disable clamav-freshclam
 sudo nsm_blacklist_md5
 
 ####################################

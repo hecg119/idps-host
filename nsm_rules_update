@@ -213,6 +213,7 @@ sudo rm /tmp/*.url
 sudo rm /tmp/crypt*
 sudo rm /tmp/malware*
 sudo rm -R /tmp/rules/
+sudo rm /tmp/TorBulkExitList
 cd ~
 
 # loading rules

@@ -112,26 +112,26 @@ fi
 #
 # ransomware tracker
 #
-cd /tmp
-wget http://ransomwaretracker.abuse.ch/downloads/RW_DOMBL.txt -O /tmp/RW_DOMBL.txt
-if [ -s /tmp/RW_DOMBL.txt ]
-then
-	grep -v "#" /tmp/RW_DOMBL.txt > /var/lib/suricata/rules/ransomwaretracker.url
-fi
+#cd /tmp
+#wget http://ransomwaretracker.abuse.ch/downloads/RW_DOMBL.txt -O /tmp/RW_DOMBL.txt
+#if [ -s /tmp/RW_DOMBL.txt ]
+#then
+#	grep -v "#" /tmp/RW_DOMBL.txt > /var/lib/suricata/rules/ransomwaretracker.url
+#fi
 
-cd /tmp
-wget http://ransomwaretracker.abuse.ch/downloads/RW_URLBL.txt -O /tmp/RW_URLBL.txt
-if [ -s /tmp/RW_URLBL.txt ]
-then
-	grep -v "#" /tmp/RW_URLBL.txt >> /var/lib/suricata/rules/ransomwaretracker.url
-fi
+#cd /tmp
+#wget http://ransomwaretracker.abuse.ch/downloads/RW_URLBL.txt -O /tmp/RW_URLBL.txt
+#if [ -s /tmp/RW_URLBL.txt ]
+#then
+#	grep -v "#" /tmp/RW_URLBL.txt >> /var/lib/suricata/rules/ransomwaretracker.url
+#fi
 
-cd /tmp
-wget http://ransomwaretracker.abuse.ch/downloads/RW_IPBL.txt -O /tmp/RW_IPBL.txt
-if [ -s /tmp/RW_IPBL.txt ]
-then
-	grep -v "#" RW_IPBL.txt | sort -u | sed -e 's/$/,1,10/' > /var/lib/suricata/rules/iprep/ransomwaretracker.blacklist
-fi
+#cd /tmp
+#wget http://ransomwaretracker.abuse.ch/downloads/RW_IPBL.txt -O /tmp/RW_IPBL.txt
+#if [ -s /tmp/RW_IPBL.txt ]
+#then
+#	grep -v "#" RW_IPBL.txt | sort -u | sed -e 's/$/,1,10/' > /var/lib/suricata/rules/iprep/ransomwaretracker.blacklist
+#fi
 
 #
 # various malware sha1 and sha256 checksum

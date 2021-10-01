@@ -118,3 +118,13 @@ re:ET\sTROJAN\sPossible\sWannaCry\sDNS\sLookup
 1:2029709
 # ET HUNTING Suspicious TLS SNI Request for Possible COVID-19 Domain M1
 1:2029707
+# ET INFO Session Traversal Utilities for NAT (STUN Binding Request On Non-Standard High Port)
+1:2033078
+# SURICATA TLS invalid record type
+1:2230002
+# SURICATA TLS error message encountered
+1:2230009
+# SURICATA TLS invalid record/traffic
+1:2230010
+# SURICATA Applayer Detect protocol only one direction
+1:2260002
